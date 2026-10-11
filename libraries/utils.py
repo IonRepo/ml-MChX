@@ -109,7 +109,7 @@ class Limits:
         self.lower = None
 
 
-def plot_learning_curve(estimator, figure_name, X, y, axes=None, ylim=None, cv=None,
+def plot_learning_curve(estimator, figure_name, X, y, yaxis='eV', axes=None, ylim=None, cv=None,
                         n_jobs=mp.cpu_count(), dpi=400, scoring=None,
                         train_sizes=np.linspace(0.1, 1.0, 5),):
     """
@@ -222,10 +222,11 @@ def plot_learning_curve(estimator, figure_name, X, y, axes=None, ylim=None, cv=N
         train_sizes, test_scores_mean, 'o-', color='g', label='Cross-validation score'
     )
     plt.xlabel('Training examples', fontsize=footnotesize)
-    plt.ylabel('Loss ($\mu\mathregular{m^{-1}}$)',              fontsize=footnotesize)
+    plt.ylabel(f'Loss ({yaxis})',  fontsize=footnotesize)
     plt.tick_params(axis='x', labelsize=footnotesize)
     plt.tick_params(axis='y', labelsize=footnotesize)
     plt.legend(loc='best', fontsize=footnotesize)
+    plt.grid()
     plt.savefig(figure_name, dpi=dpi, bbox_inches='tight')
     plt.show()
 
